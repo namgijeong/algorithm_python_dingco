@@ -11,9 +11,9 @@ graph = {
     9: [1, 10],
     10: [9]
 }
-visited=[]
 
 def dfs_stack(adjacent_graph, start_node):
+    visited = []
     not_go_node_stack = []
     not_go_node_stack.append(start_node)
 
