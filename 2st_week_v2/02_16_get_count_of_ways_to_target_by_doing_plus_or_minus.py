@@ -1,0 +1,42 @@
+numbers = [1, 1, 1, 1, 1]
+target_number = 3
+
+
+# def get_count_of_ways_to_target_by_doing_plus_or_minus(array, target):
+#     sum = 0
+#     sum = sum + array[0]
+#
+#     if sum == target:
+#         return 1
+#     else:
+#         #다음 계산할 배열 길이가 0이면
+#         if len(array[1:array[len(array)]]) == 0:
+#             return 0
+#         else:
+#             return get_count_of_ways_to_target_by_doing_plus_or_minus(array[1:array[len(array)]], target)
+
+#풀이법
+result = []
+def get_count_of_ways_to_target_by_doing_plus_or_minus(array, target):
+    all_ways = []
+
+    #모든 경우의 수 조합을 따진다
+    def get_all_ways_by_doing_plus_or_minus(array, current_index, current_sum):
+        if current_index == len(array):
+            all_ways.append(current_sum)
+            return
+        get_all_ways_by_doing_plus_or_minus(array, current_index + 1, current_sum + array[current_index])
+        get_all_ways_by_doing_plus_or_minus(array, current_index + 1, current_sum - array[current_index])
+
+    get_all_ways_by_doing_plus_or_minus(array, 0, 0)
+    print("all_ways is ", all_ways)
+
+    target_count = 0
+
+    for way in all_ways:
+        if target == way:
+            target_count += 1
+
+    return target_count
+
+print(get_count_of_ways_to_target_by_doing_plus_or_minus(numbers, target_number))  # 5를 반환해야 합니다!
